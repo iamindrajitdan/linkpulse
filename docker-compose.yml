@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    networks:
+      - linkpulse_network
+    environment:
+      - FLASK_ENV=production
+    volumes:
+      - linkpulse_data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - linkpulse_network
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+
+
+volumes:
+  linkpulse_data:
+
+networks:
+  linkpulse_network:
+    driver: bridge

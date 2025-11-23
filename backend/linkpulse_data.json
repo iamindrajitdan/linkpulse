@@ -1,0 +1,36 @@
+{
+  "links": {
+    "EVaxRXk": {
+      "slug": "EVaxRXk",
+      "original_url": "https://drive.google.com/file/d/1Ef2GZevv1KNrGrtGvGcpVaiRWyvhAHUo/view?usp=drive_link",
+      "created_at": 1751605610,
+      "expires_at": 1751609210,
+      "click_count": 1
+    },
+    "wVXYEpD": {
+      "slug": "wVXYEpD",
+      "original_url": "https://drive.google.com/file/d/1Ef2GZevv1KNrGrtGvGcpVaiRWyvhAHUo/view?usp=drive_link",
+      "created_at": 1751605640,
+      "expires_at": 1751609240,
+      "click_count": 1
+    }
+  },
+  "analytics": {
+    "EVaxRXk": [
+      {
+        "timestamp": 1751605618,
+        "ip": "127.0.0.1",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+        "country": "Local"
+      }
+    ],
+    "wVXYEpD": [
+      {
+        "timestamp": 1751605643,
+        "ip": "127.0.0.1",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+        "country": "Local"
+      }
+    ]
+  }
+}
