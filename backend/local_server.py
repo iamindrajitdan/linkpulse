@@ -31,9 +31,13 @@ def shorten_link():
         # Use business service
         link_data = link_service.create_short_link(url, ttl_hours)
         
+        # Get the host from request headers for dynamic URL generation
+        host = request.headers.get('Host', 'localhost:5000')
+        protocol = 'https' if request.is_secure else 'http'
+        
         return jsonify({
             'slug': link_data.slug,
-            'short_url': f'http://localhost:5000/u/{link_data.slug}',
+            'short_url': f'{protocol}://{host}/u/{link_data.slug}',
             'original_url': link_data.original_url,
             'expires_at': link_data.expires_at
         })
