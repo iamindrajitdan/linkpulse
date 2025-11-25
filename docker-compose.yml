@@ -9,6 +9,7 @@ services:
       - linkpulse_network
     environment:
       - FLASK_ENV=production
+      - DATA_DIR=/app/data
     volumes:
       - linkpulse_data:/app/data
     restart: unless-stopped

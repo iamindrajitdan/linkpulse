@@ -14,7 +14,10 @@ app = Flask(__name__)
 CORS(app)
 
 # Initialize services with dependency injection
-repository = FileRepository('/app/data/linkpulse_data.json')  # Use InMemoryRepository() for testing
+# Use local file path that works both locally and in Docker
+data_dir = os.environ.get('DATA_DIR', os.path.dirname(__file__))
+data_file = os.path.join(data_dir, 'linkpulse_data.json')
+repository = FileRepository(data_file)
 link_service = LinkBusinessService(repository)
 analytics_service = AnalyticsService(repository)
 

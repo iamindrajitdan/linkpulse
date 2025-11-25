@@ -86,21 +86,34 @@ class FileRepository(LinkRepository):
         self._load_data()
     
     def _load_data(self):
+        # Create directory if it doesn't exist
+        os.makedirs(os.path.dirname(self.data_file), exist_ok=True)
+        
         if os.path.exists(self.data_file):
-            with open(self.data_file, 'r') as f:
-                data = json.load(f)
-                self.links = data.get('links', {})
-                self.analytics = data.get('analytics', {})
+            try:
+                with open(self.data_file, 'r') as f:
+                    data = json.load(f)
+                    self.links = data.get('links', {})
+                    self.analytics = data.get('analytics', {})
+            except (json.JSONDecodeError, IOError):
+                self.links = {}
+                self.analytics = {}
         else:
             self.links = {}
             self.analytics = {}
     
     def _save_data(self):
-        with open(self.data_file, 'w') as f:
-            json.dump({
-                'links': self.links,
-                'analytics': self.analytics
-            }, f, indent=2)
+        # Create directory if it doesn't exist
+        os.makedirs(os.path.dirname(self.data_file), exist_ok=True)
+        
+        try:
+            with open(self.data_file, 'w') as f:
+                json.dump({
+                    'links': self.links,
+                    'analytics': self.analytics
+                }, f, indent=2)
+        except IOError as e:
+            print(f"Error saving data: {e}")
     
     def save_link(self, link_data: LinkData) -> None:
         self.links[link_data.slug] = {
