@@ -102,6 +102,6 @@ def health_check():
 
 if __name__ == '__main__':
     print("LinkPulse Backend Server Starting...")
-    print("API Base: http://localhost:5000/dev")
-    print("Health Check: http://localhost:5000/dev/health")
-    app.run(debug=True, port=5000)
+    print("API Base: http://0.0.0.0:5000/dev")
+    print("Health Check: http://0.0.0.0:5000/dev/health")
+    app.run(debug=True, port=5000, host='0.0.0.0')
