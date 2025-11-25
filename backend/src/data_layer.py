@@ -86,8 +86,10 @@ class FileRepository(LinkRepository):
         self._load_data()
     
     def _load_data(self):
-        # Create directory if it doesn't exist
-        os.makedirs(os.path.dirname(self.data_file), exist_ok=True)
+        # Create directory if it doesn't exist (handle case where dirname is empty)
+        dir_path = os.path.dirname(self.data_file)
+        if dir_path:
+            os.makedirs(dir_path, exist_ok=True)
         
         if os.path.exists(self.data_file):
             try:
@@ -103,8 +105,10 @@ class FileRepository(LinkRepository):
             self.analytics = {}
     
     def _save_data(self):
-        # Create directory if it doesn't exist
-        os.makedirs(os.path.dirname(self.data_file), exist_ok=True)
+        # Create directory if it doesn't exist (handle case where dirname is empty)
+        dir_path = os.path.dirname(self.data_file)
+        if dir_path:
+            os.makedirs(dir_path, exist_ok=True)
         
         try:
             with open(self.data_file, 'w') as f:
