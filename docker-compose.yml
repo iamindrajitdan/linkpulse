@@ -9,16 +9,12 @@ services:
       - linkpulse_network
     environment:
       - FLASK_ENV=production
-      - DATA_DIR=/app/data
     volumes:
       - linkpulse_data:/app/data
     restart: unless-stopped
 
   frontend:
-    build: 
-      context: ./frontend
-      args:
-        - VITE_API_BASE_URL=http://98.81.77.178:5000/dev
+    build: ./frontend
     ports:
       - "3000:3000"
     networks:

@@ -87,6 +87,7 @@ class LinkBusinessService:
     def get_redirect_url(self, slug: str, ip: str, user_agent: str) -> Optional[str]:
         # Get link data
         link_data = self.repository.get_link(slug)
+        print(f"Debug: Looking for slug '{slug}', found: {link_data is not None}")
         if not link_data:
             return None
         

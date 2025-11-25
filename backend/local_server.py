@@ -14,8 +14,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Initialize services with dependency injection
-# Use InMemoryRepository for now to avoid file path issues
-repository = InMemoryRepository()
+repository = FileRepository('linkpulse_data.json')  # Use InMemoryRepository() for testing
 link_service = LinkBusinessService(repository)
 analytics_service = AnalyticsService(repository)
 
@@ -32,13 +31,9 @@ def shorten_link():
         # Use business service
         link_data = link_service.create_short_link(url, ttl_hours)
         
-        # Get the host from request headers for dynamic URL generation
-        host = request.headers.get('Host', 'localhost:5000')
-        protocol = 'https' if request.is_secure else 'http'
-        
         return jsonify({
             'slug': link_data.slug,
-            'short_url': f'{protocol}://{host}/u/{link_data.slug}',
+            'short_url': f'http://localhost:5000/u/{link_data.slug}',
             'original_url': link_data.original_url,
             'expires_at': link_data.expires_at
         })

@@ -3,10 +3,6 @@ FROM node:18-alpine AS build
 
 WORKDIR /app
 
-# Accept build argument for API URL
-ARG VITE_API_BASE_URL=http://localhost:5000/dev
-ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
-
 # Copy package files first for better caching
 COPY package*.json ./
 
@@ -16,7 +12,7 @@ RUN npm ci --silent
 # Copy source code
 COPY . .
 
-# Build the application with environment variable
+# Build the application
 RUN npm run build
 
 # Production stage with minimal image

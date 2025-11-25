@@ -128,6 +128,7 @@ class FileRepository(LinkRepository):
             'click_count': link_data.click_count
         }
         self.analytics[link_data.slug] = []
+        print(f"Debug: Saved link with slug '{link_data.slug}', total links: {len(self.links)}")
         self._save_data()
     
     def get_link(self, slug: str) -> Optional[LinkData]:
